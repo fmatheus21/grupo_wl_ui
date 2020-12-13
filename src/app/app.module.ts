@@ -3,6 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginModule } from './login/login.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { EmployeeModule } from './employee/employee.module';
+import { User } from './_model/user';
+import { CoreModule } from './core/core.module';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { SharedModule } from './shared/shared.module';
+import { ToastyModule } from 'ng2-toasty';
+import { EventModule } from './event/event.module';
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -10,9 +24,26 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LoginModule,
+    DashboardModule,
+    EmployeeModule,
+    CoreModule,
+    HttpClientModule,
+    SharedModule,
+    EventModule,
+    ToastyModule.forRoot(),
+    JwtModule.forRoot({
+      config: {      
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:8083'],
+        disallowedRoutes: []
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    User,
+    JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

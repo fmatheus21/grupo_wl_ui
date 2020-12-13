@@ -1,0 +1,53 @@
+<div class="container align-top-form">
+
+
+    <form #employeeForm="ngForm">
+
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-8">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="employee.name" name="name" class="form-control form-control-lg" placeholder="" #name="ngModel" required minlength="10" pattern="[a-zA-Z ]*">
+                    <label class="floating-label">Nome <span class="required">*</span></label>
+                    <small *ngIf="name.hasError('required') && name.dirty">Preenchimento obrigatório.</small>
+                    <small *ngIf="name.hasError('required') && name.touched">Preenchimento obrigatório.</small>
+                    <small *ngIf="name.hasError('minlength') && name.dirty">Deve ter, no mínimo, 10 caracteres.</small>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="employee.document" name="document" class="form-control form-control-lg mask-cpf" placeholder="" #document="ngModel" required>
+                    <label class="floating-label">CPF <span class="required">*</span></label>
+                    <small *ngIf="document.hasError('required') && document.dirty">Preenchimento obrigatório.</small>
+                    <small *ngIf="document.hasError('required') && document.touched">Preenchimento obrigatório.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="employee.phone" name="phone" class="form-control form-control-lg mask-phone" placeholder="" #phone="ngModel" required>
+                    <label class="floating-label">Telefone <span class="required">*</span></label>
+                    <small *ngIf="phone.hasError('required') && phone.dirty">Preenchimento obrigatório.</small>
+                    <small *ngIf="phone.hasError('required') && phone.touched">Preenchimento obrigatório.</small>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="employee.email" name="email" class="form-control form-control-lg" placeholder="" #email="ngModel" required>
+                    <label class="floating-label">Email <span class="required">*</span></label>
+                    <small *ngIf="email.hasError('required') && email.dirty">Preenchimento obrigatório.</small>
+                    <small *ngIf="email.hasError('required') && email.touched">Preenchimento obrigatório.</small>
+                    <small *ngIf="email.hasError('email') && email.touched">Informe um email válido.</small>
+                    <small *ngIf="email.hasError('email') && email.dirty">Informe um email válido.</small>
+                </div>
+            </div>
+        </div>
+
+
+        <button (click)="create(employeeForm)" class="btn btn-primary">Salvar</button>
+
+
+    </form>
+
+</div>
