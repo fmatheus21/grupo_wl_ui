@@ -21,12 +21,16 @@ export class EventService {
   ) { }
 
 
-  create(event: Event): Observable<Event> {
+  create(event: Event): Observable<Event> {    
     return this.http.post<Event>(`${this.apiUrl}/participation`, event);
   }
 
   getAll(): Observable<Event[]> {
     return this.http.get<Event[]>(`${this.apiUrl}/participation`);
+  }
+
+  totalCollected(): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/participation/totalcollected`);
   }
 
   findById(id: number): Observable<Event> {
@@ -35,6 +39,10 @@ export class EventService {
 
   deleteGuest(id: number): Observable<Event> {
     return this.http.delete<Event>(`${this.apiUrl}/guest/${id}`);
+  }
+
+  deleteParticipation(id: number): Observable<Event> {
+    return this.http.delete<Event>(`${this.apiUrl}/participation/${id}`);
   }
 
 

@@ -57,9 +57,7 @@ export class EventCreateComponent implements OnInit {
       })
   }
 
-  public create(form: NgForm): void {
-    this.event.id = 1;
-
+  public create(form: NgForm): void {  
     this.eventService.create(this.event)
       .subscribe(
         response => {

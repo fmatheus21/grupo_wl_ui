@@ -6,6 +6,7 @@ import { User } from '../_model/user';
 import { HttpOptionsService } from './http-options.service';
 import { environment } from 'src/environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -48,6 +49,22 @@ export class AuthService {
 
       });
   }
+
+
+  logout() {
+    return this.http.delete(this.apiUrl + '/tokens/revoke', { withCredentials: true })
+      .toPromise()
+      .then(() => {
+        this.cleanAccessToken();
+      });
+  }
+
+
+  cleanAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
 
   private storeToken(token: string) {
     this.jwtPayload = this.jwtHelperService.decodeToken(token);

@@ -24,18 +24,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
   login(form: NgForm) {
     this.user.username = form.value.username;
     this.user.password = form.value.password;
     this.authSrvice.signIn(this.user)
       .then((response) => {
-        this.router.navigate(['/dashboard']);
-        this.messageService.sendMessageSuccess(response);
+        this.router.navigate(['/dashboard']);        
+        this.messageService.sendMessage('success', 'Login realizado com sucesso!');
       })
       .catch(error => {
-        this.messageService.sendMessageError(error);
+        this.messageService.sendMessage('error', 'Usuário ou senha incorreta.');
       });
   }
 

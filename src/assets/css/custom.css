@@ -82,6 +82,10 @@ p {
     background: rgba(0, 0, 0, 0.52);
 }
 
+ul {
+    list-style: none;
+}
+
 
 /*.dropdown:hover>.dropdown-menu {
     display: block;

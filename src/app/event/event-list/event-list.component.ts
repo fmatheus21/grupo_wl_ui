@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'src/app/security/auth.service';
 import { MessageService } from 'src/app/shared/service/message.service';
 import { Event } from 'src/app/_model/event';
 import { EventService } from '../event.service';
@@ -15,13 +16,14 @@ export class EventListComponent implements OnInit {
   eventObject: Event = new Event();
   @ViewChild('table') grid: any;
   totalRecords = 0;
-  titleHeader: any;
+  titleHeader: any;  
+  collection: Event = new Event();
 
 
   constructor(
     private title: Title,
     private eventService: EventService,
-    private messageService: MessageService
+    private messageService: MessageService    
   ) { }
 
   ngOnInit(): void {
@@ -30,11 +32,13 @@ export class EventListComponent implements OnInit {
     this.list();
   }
 
+
   list() {
     this.eventService.getAll()
       .subscribe((data: Event[]) => {
         var result = JSON.parse(JSON.stringify(data));
         this.events = result.content;
+        this.totalCollected();
       })
   }
 
@@ -46,11 +50,33 @@ export class EventListComponent implements OnInit {
       })
   }
 
+  totalCollected() {
+    this.eventService.totalCollected()
+      .subscribe((data: Event[]) => {
+        var result = JSON.parse(JSON.stringify(data));
+        this.collection = result;        
+      })
+  }
+
   deleteGuest(id): void {
     this.eventService.deleteGuest(id)
       .subscribe(
         response => {
-          this.messageService.sendMessageSuccess(response);          
+          this.messageService.sendMessageSuccess(response);
+          this.find(id);
+          this.totalCollected();
+        },
+        error => {          
+          this.messageService.sendMessageError(error);
+        });
+  }
+
+  deleteParticipation(id): void {
+    this.eventService.deleteParticipation(id)
+      .subscribe(
+        response => {
+          this.messageService.sendMessageSuccess(response);
+          this.list();
         },
         error => {
           console.log(error)

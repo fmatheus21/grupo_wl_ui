@@ -12,7 +12,8 @@ export class HttpOptionsService {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Basic YW5ndWxhcjphbmd1bGFyMjEwNjgzQA=='
-    })
+    }),
+    withCredentials: true
   };
 
   httpOptionsRequest = {

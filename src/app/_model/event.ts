@@ -15,6 +15,9 @@ export class Event {
     guest_rate: number;
     has_guest: boolean;
     id_guest: number;
+    grand_total:string;
+    employee_total: string
+    guest_total:string;
 
 }
 

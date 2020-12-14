@@ -13,6 +13,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { SharedModule } from './shared/shared.module';
 import { ToastyModule } from 'ng2-toasty';
 import { EventModule } from './event/event.module';
+import { AuthGuard } from './security/auth.guard';
 
 
 export function tokenGetter() {
@@ -35,7 +36,7 @@ export function tokenGetter() {
     EventModule,
     ToastyModule.forRoot(),
     JwtModule.forRoot({
-      config: {      
+      config: {
         tokenGetter: tokenGetter,
         allowedDomains: ['localhost:8083'],
         disallowedRoutes: []
@@ -44,7 +45,9 @@ export function tokenGetter() {
   ],
   providers: [
     User,
-    JwtHelperService],
-  bootstrap: [AppComponent]
+    JwtHelperService,
+    AuthGuard
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

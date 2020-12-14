@@ -1,5 +1,6 @@
 <div class="container align-top-form">
 
+
     <form autocomplete="off" (ngSubmit)="list()">
         <div class="card-body">
 
@@ -25,9 +26,22 @@
                                 <button type="button" (click)="find(event.id)" class="btn btn-primary" data-toggle="modal" data-target="#eventModal" title="Visualizar">
                                     <i class="fa fa-search"></i>
                                   </button>
+                                <button type="button" (click)="deleteParticipation(event.id)" class="btn btn-danger" title="Excluir" style="margin-left: 5px;">
+                                    <i class="fa fa-trash"></i>
+                                  </button>
                             </td>
                         </tr>
                     </tbody>
+
+                    <tfoot>
+                        <h6>Arrecadação:</h6>
+                        <ul>
+                            <li><b>Funconário: </b>{{collection.employee_total}}</li>
+                            <li><b>Convidado: </b>{{collection.guest_total}}</li>
+                            <li><b>Total: </b>{{collection.grand_total}}</li>
+                        </ul>
+                    </tfoot>
+
                 </table>
 
             </div>

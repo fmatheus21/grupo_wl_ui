@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MessageService } from './shared/service/message.service';
 import { ToastyConfig } from 'ng2-toasty';
 import { ScriptService } from './shared/service/script.service';
+import { AuthService } from './security/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,30 +13,24 @@ import { ScriptService } from './shared/service/script.service';
 export class AppComponent implements OnInit {
   title = 'ui';
 
-  constructor(
-    private toastyConfig: ToastyConfig,
+  constructor(   
     private messageService: MessageService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private scriptService: ScriptService
+    private router: Router,      
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
 
-    if (window.location.pathname === '/login') {
 
-      const token = localStorage.getItem('token');
-      if (token) {
+    const currentUser = this.authService.getToken();
+    if (!currentUser) {
+      this.router.navigate(['/login']);
+    } else {
+      if (window.location.pathname === '/login') {
         this.router.navigate(['/dashboard']);
         this.messageService.sendMessage('success', "Você já está logado");
-        console.log(token);
-      } else {
-        this.router.navigate(['/login']);
-        this.messageService.sendMessage('error', "Você precisa logar");
       }
-
     }
-
 
   }
 
