@@ -12,7 +12,7 @@ import { MessageService } from '../shared/service/message.service';
 export class EventService {
 
 
-  private readonly apiUrl = `${environment.apiUrl}/event/participation`;
+  private readonly apiUrl = `${environment.apiUrl}/event`;
 
   constructor(
     private http: HttpClient,
@@ -22,11 +22,19 @@ export class EventService {
 
 
   create(event: Event): Observable<Event> {
-    return this.http.post<Event>(this.apiUrl, event);
+    return this.http.post<Event>(`${this.apiUrl}/participation`, event);
   }
 
   getAll(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.apiUrl);
+    return this.http.get<Event[]>(`${this.apiUrl}/participation`);
+  }
+
+  findById(id: number): Observable<Event> {
+    return this.http.get<Event>(`${this.apiUrl}/participation/${id}`);
+  }
+
+  deleteGuest(id: number): Observable<Event> {
+    return this.http.delete<Event>(`${this.apiUrl}/guest/${id}`);
   }
 
 

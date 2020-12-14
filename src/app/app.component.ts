@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
     private messageService: MessageService,
     private router: Router,
     private route: ActivatedRoute,
+    private scriptService: ScriptService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit {
       }
 
     }
+
 
   }
 

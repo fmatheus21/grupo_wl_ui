@@ -1,0 +1,39 @@
+.form-group {
+    margin-bottom: 1.5rem !important;
+}
+
+input:focus~.floating-label,
+select:focus~.floating-label,
+input:not(:placeholder-shown)~.floating-label,
+select:not([value=""]):valid~.floating-label {
+    top: 2px;
+    left: 25px;
+    font-size: 14px;
+    color: #007bff;
+    font-weight: bold;
+    opacity: 1;
+}
+
+.floating-label {
+    position: absolute;
+    pointer-events: none;
+    font-size: 16px;
+    left: 30px;
+    top: 12px;
+    transition: 0.5s ease all;
+    color: #aeabab;
+}
+
+.form-control-lg {
+    height: calc(1.5em + 1rem + 10px);
+    padding: .5rem 1rem;
+    padding-top: 0.5rem;
+    font-size: 1.0rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    padding-top: 15px;
+}
+
+.required {
+    color: red !important;
+}

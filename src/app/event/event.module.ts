@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EventRoutingModule } from './event-routing.module';
-import { EventCreateComponent } from './event/event-create.component';
+import { EventCreateComponent } from './event-create/event-create.component';
 import { FormsModule } from '@angular/forms';
+import { EventListComponent } from './event-list/event-list.component';
 
 
 @NgModule({
-  declarations: [EventCreateComponent],
+  declarations: [EventCreateComponent, EventListComponent],
   imports: [
     CommonModule,
     FormsModule,

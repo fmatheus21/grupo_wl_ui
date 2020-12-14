@@ -13,7 +13,6 @@ export class EmployeeListComponent implements OnInit {
 
   
   employees: Employee[] = [];
-
   @ViewChild('table') grid: any;
   totalRecords = 0;
   titleHeader: any;
@@ -27,9 +26,7 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Funcionários');
     this.titleHeader = this.title.getTitle();
-    this.list();
-    const refreshToken = localStorage.getItem('refresh_token');
-    console.log('refreshToken: ' + refreshToken);
+    this.list();    
   }
 
   list() {

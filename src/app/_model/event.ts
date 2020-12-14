@@ -1,5 +1,5 @@
 export class Event {
-    id_event: 1;
+    id: 1;
     id_employee: number;
     id_employee_rate: number;
     guest_name: string;
@@ -11,6 +11,10 @@ export class Event {
     employee_name: string;
     employee_drink: string;
     employee_rate: string
+    guest_drink: string;
+    guest_rate: number;
+    has_guest: boolean;
+    id_guest: number;
 
 }
 

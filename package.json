@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
     "@auth0/angular-jwt": "^5.0.2",
+    "@fortawesome/angular-fontawesome": "^0.8.1",
+    "bootstrap-icons": "^1.2.1",
     "ng2-toasty": "^4.0.3",
     "rxjs": "~6.5.4",
     "rxjs-compat": "^6.6.3",

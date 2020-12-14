@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { ToastyModule } from 'ng2-toasty';
 import { EventModule } from './event/event.module';
 
+
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
